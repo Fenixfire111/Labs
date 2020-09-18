@@ -1,3 +1,0 @@
-D:/Clion/Programming/02-week/z1v4/cmake-build-debug/CMakeFiles/z1v4.dir
-D:/Clion/Programming/02-week/z1v4/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Clion/Programming/02-week/z1v4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
