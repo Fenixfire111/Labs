@@ -3,7 +3,7 @@
 #include <ctime>
 #include <algorithm>
 #include <cmath>
-///Вариант 4
+///Вариант  4
 using namespace std;
 int main() {
     srand (time (nullptr));
