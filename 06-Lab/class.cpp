@@ -36,6 +36,9 @@ Fraction::Fraction(int A, int B){
             numerator = A;
             denominator = B;
             Reduction();
+        } else {
+            std::cout<<"Denominator is 0"<<std::endl;
+            exit(0);
         }
     }
 Fraction::Fraction (Fraction& x){

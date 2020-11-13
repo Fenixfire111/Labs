@@ -2,9 +2,7 @@
 #include "class.h"
 
 int main() {
-    Fraction fraction1(1,1),fraction2(1,1);
-    fraction1.DataInput();
-    fraction2.DataInput();
+    Fraction fraction1(2,2),fraction2(1,1);
     Fraction fractionM(1,1),fractionD(1,1),fractionA(1,1);
 
     fractionM=fraction1.Multiplication(fraction2);
