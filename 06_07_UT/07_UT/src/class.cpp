@@ -101,21 +101,77 @@ int StudentAfterSecond::GetEstimate2(int number){
 }
 
 
-void Student::Print() {
+std::string Student::Print() {
     std::cout << "Name of the Student: " << name << ", his/her id: " << GetId() <<", his/her course number: " << course << "\n";
     std::cout <<", his/her group number: "<< group << ", his/her student number: " << GetNumber()<< "\n";
+    std::string s = "Name of the Student: ";
+    std::string s1 = name;
+    s.append(s1);
+    s1 = ", his/her id: ";
+    s.append(s1);
+    s1 = std::to_string(GetId());
+    s.append(s1);
+    s1 = ", his/her course number: ";
+    s.append(s1);
+    s1 = std::to_string(course);
+    s.append(s1);
+    s1 = ", his/her group number: ";
+    s.append(s1);
+    s1 = std::to_string(group);
+    s.append(s1);
+    s1 = ", his/her student number: ";
+    s.append(s1);
+    s1 = std::to_string(GetNumber());
+    s.append(s1);
+    return s;
 }
 
-void StudentAfterFirst::Print() {
+std::string StudentAfterFirst::Print() {
     std::cout << "Name of the Student: " << name << ", his/her id: " << GetId() <<", his/her course number: " << course << "\n";
     std::cout <<", his/her group number: "<< group << ", his/her student number: " << GetNumber()<< "\n";
     std::cout <<"Estimates for the first semester:"<< "\n";
     for (int i=0; i<4;++i){
         std::cout << firstSession[i] << "\n";
     }
+    std::string s = "Name of the Student: ";
+    std::string s1 = name;
+    s.append(s1);
+    s1 = ", his/her id: ";
+    s.append(s1);
+    s1 = std::to_string(GetId());
+    s.append(s1);
+    s1 = ", his/her course number: ";
+    s.append(s1);
+    s1 = std::to_string(course);
+    s.append(s1);
+    s1 = ", his/her group number: ";
+    s.append(s1);
+    s1 = std::to_string(group);
+    s.append(s1);
+    s1 = ", his/her student number: ";
+    s.append(s1);
+    s1 = std::to_string(GetNumber());
+    s.append(s1);
+    s1 = "Estimates for the first semester:";
+    s.append(s1);
+    s1 = std::to_string(firstSession[0]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[1]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[2]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[3]);
+    s.append(s1);
+    return s;
 }
 
-void StudentAfterSecond::Print() {
+std::string StudentAfterSecond::Print() {
     std::cout << "Name of the Student: " << name << ", his/her id: " << GetId() <<", his/her course number: " << course << "\n";
     std::cout <<", his/her group number: "<< group << ", his/her student number: " << GetNumber()<< "\n";
     std::cout <<"Estimates for the first semester:"<< "\n";
@@ -126,13 +182,68 @@ void StudentAfterSecond::Print() {
     for (int i=0; i<5;++i){
         std::cout << secondSession[i] << "\n";
     }
-
+    std::string s = "Name of the Student: ";
+    std::string s1 = name;
+    s.append(s1);
+    s1 = ", his/her id: ";
+    s.append(s1);
+    s1 = std::to_string(GetId());
+    s.append(s1);
+    s1 = ", his/her course number: ";
+    s.append(s1);
+    s1 = std::to_string(course);
+    s.append(s1);
+    s1 = ", his/her group number: ";
+    s.append(s1);
+    s1 = std::to_string(group);
+    s.append(s1);
+    s1 = ", his/her student number: ";
+    s.append(s1);
+    s1 = std::to_string(GetNumber());
+    s.append(s1);
+    s1 = "Estimates for the first semester:";
+    s.append(s1);
+    s1 = std::to_string(firstSession[0]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[1]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[2]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(firstSession[3]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(secondSession[0]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(secondSession[1]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(secondSession[2]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(secondSession[3]);
+    s.append(s1);
+    s1 = " ";
+    s.append(s1);
+    s1 = std::to_string(secondSession[4]);
+    s.append(s1);
+    return s;
 }
 
 
-std::ostream & operator<< (std::ostream &out, Student &student){
-    student.Print();
-    return out;
+std::string & operator<< (std::ostream &out, Student &student){
+    std::string s=student.Print();
+    return s;
 }
 
 

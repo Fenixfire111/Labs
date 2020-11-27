@@ -200,5 +200,13 @@ TEST(FunctionCheckStudent2, GetStatus2)
     EXPECT_EQ(B.GetStatus(),2);
 }
 
+TEST(FunctionCheckStudent, Print)
+{
+    Student A("A",1,2,3);
+    EXPECT_EQ(A.Print(),"Name of the Student: A, his/her id: 11, his/her course number: 1, his/her group number: 2, his/her student number: 3");
+}
+
+
+
 
 
