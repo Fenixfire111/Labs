@@ -20,7 +20,7 @@ public:
     void SetName(char* name1);
     void SetCourse(int course1);
     void SetGroup(int group1);
-    friend std::string & operator<< (std::ostream &out, Student &student);
+    friend std::ostream & operator<< (std::ostream &out, Student &student);
     virtual std::string Print();
     virtual double AverageEstimate();
     virtual int GetStatus();
@@ -35,7 +35,7 @@ public:
     StudentAfterFirst (StudentAfterFirst& student);
     void SetEstimates(int a, int b, int c, int d);
     int GetEstimate(int number);
-    friend std::string & operator<< (std::ostream &out, StudentAfterFirst &student);
+    friend std::ostream & operator<< (std::ostream &out, StudentAfterFirst &student);
     virtual double AverageEstimate();
     virtual int GetStatus();
     virtual std::string Print();
@@ -50,7 +50,7 @@ public:
     void SetEstimates(int a1, int b1, int c1, int d1, int e1);
     int secondSession[5];
     int GetEstimate2(int number);
-    friend std::string & operator<< (std::ostream &out, StudentAfterSecond &student);
+    friend std::ostream & operator<< (std::ostream &out, StudentAfterSecond &student);
     double AverageEstimate();
     int GetStatus();
     std::string Print();

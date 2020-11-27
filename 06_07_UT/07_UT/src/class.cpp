@@ -241,9 +241,9 @@ std::string StudentAfterSecond::Print() {
 }
 
 
-std::string & operator<< (std::ostream &out, Student &student){
-    std::string s=student.Print();
-    return s;
+std::ostream & operator<< (std::ostream &out, Student &student){
+    out << student.Print() <<std::endl;
+    return out;
 }
 
 

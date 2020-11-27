@@ -206,7 +206,18 @@ TEST(FunctionCheckStudent, Print)
     EXPECT_EQ(A.Print(),"Name of the Student: A, his/her id: 11, his/her course number: 1, his/her group number: 2, his/her student number: 3");
 }
 
-
+TEST(OperatorCheckStudent, Operat)
+{
+    Student A("A",1,2,3);
+    std::stringstream out;
+    std::string a;
+    std::string b;
+    out<<A;
+    while (out>>b){
+        a = a  + b + " ";
+    }
+    EXPECT_EQ(a,"Name of the Student: A, his/her id: 30, his/her course number: 1, his/her group number: 2, his/her student number: 3 ");
+}
 
 
 
