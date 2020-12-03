@@ -91,7 +91,10 @@ public:
     }
 
     Stack& operator= (const Stack &st){
-
+        if (this == &st)
+        {
+            return *this;
+        }
         delete[] stack;
         top = st.top;
         capacity = st.capacity;
