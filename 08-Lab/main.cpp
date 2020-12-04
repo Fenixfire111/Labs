@@ -128,6 +128,9 @@ public:
         return Size()>a.Size();
     }
 
+    ~Stack() {
+        delete [] stack;
+    }
 };
 
 int main() {
