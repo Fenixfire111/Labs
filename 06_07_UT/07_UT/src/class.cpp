@@ -272,3 +272,39 @@ int StudentAfterSecond::GetStatus(){
 }
 
 
+double GroupAverageEstimate(Student** student1, int numberGroup, int numberSession){
+  double sum=0;
+  double count=0;
+  if (numberSession==1){
+    for (int i=0; i<9;++i){
+      if (student1[i]->group==numberGroup && student1[i]->GetStatus()==1){
+        sum+=student1[i]->AverageEstimate();
+        ++count;
+      }
+    }
+  } else if (numberSession==2){
+    for (int i=0; i<9;++i){
+      if (student1[i]->group==numberGroup && student1[i]->GetStatus()==2){
+        sum+=student1[i]->AverageEstimate();
+        ++count;
+      }
+    }
+  }
+  return sum/count;
+}
+
+double AverageEstimateOfStudents(Student** student1){
+  double sum=0;
+  for (int i=0; i<6;++i){
+    sum+=student1[i]->AverageEstimate();
+  }
+  return sum/6;
+}
+
+void CleanMemory(Student** cont) {
+  for (int i = 0; i < 6; i++) {
+    delete cont[i];
+  }
+}
+
+

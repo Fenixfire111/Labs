@@ -219,5 +219,35 @@ TEST(OperatorCheckStudent, Operat)
     EXPECT_EQ(a,"Name of the Student: A, his/her id: 30, his/her course number: 1, his/her group number: 2, his/her student number: 3 ");
 }
 
+TEST (Function1, GroupAverageEstimate) {
+  Student* student[6];
+  student[0]= new Student("Aa",1,1,100);
+  student[1]= new Student("Bb",1,2,101);
+  student[2]= new StudentAfterFirst("Ddd",1,2,1000,5,5,5,5);
+  student[3]= new StudentAfterFirst("Eee",1,4,1001,6,6,6,6);
+  student[4]= new StudentAfterSecond("X1",2,5,11,7,7,8,9,4,7,7,8,6);
+  student[5]= new StudentAfterSecond("Y1",3,5,12,5,7,6,7,4,8,4,9,4);
+  double average1 = GroupAverageEstimate(student, 2,1);
+  double average2 = GroupAverageEstimate(student, 5,2);
+  EXPECT_EQ(average1, 5);
+  EXPECT_EQ(average2, 6.5);
+  CleanMemory(student);
+}
+
+TEST (Function2, AverageEstimateOfStudents) {
+  Student* student[6];
+  student[0]= new Student("Aa",1,1,100);
+  student[1]= new Student("Bb",1,2,101);
+  student[2]= new StudentAfterFirst("Ddd",1,2,1000,10,10,10,10);
+  student[3]= new StudentAfterFirst("Eee",1,4,1001,10,10,10,10);
+  student[4]= new StudentAfterSecond("X1",2,5,11,10,10,10,10,10,10,10,5,6);
+  student[5]= new StudentAfterSecond("Y1",3,5,12,10,10,10,10,10,10,10,10,10);
+  double average = AverageEstimateOfStudents(student);
+  std::cout <<average<<std::endl;
+  EXPECT_EQ(average, 6.5);
+  CleanMemory(student);
+}
+
+
 
 

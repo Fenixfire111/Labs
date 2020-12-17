@@ -2,6 +2,7 @@
 #include <iostream>
 #ifndef INC_07_LAB_CLASS_H
 #define INC_07_LAB_CLASS_H
+
 class Student{
 private:
     int id;
@@ -55,4 +56,9 @@ public:
     int GetStatus();
     std::string Print();
 };
+
+double GroupAverageEstimate(Student** student1, int numberGroup, int numberSession);
+double AverageEstimateOfStudents(Student** student1);
+void CleanMemory(Student** cont);
+
 #endif //INC_07_LAB_CLASS_H
