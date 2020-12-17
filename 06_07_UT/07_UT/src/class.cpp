@@ -272,6 +272,7 @@ int StudentAfterSecond::GetStatus(){
 }
 
 
+<<<<<<< HEAD
 double GroupAverageEstimate(Student** student1, int numberGroup, int numberSession){
   double sum=0;
   double count=0;
@@ -308,3 +309,5 @@ void CleanMemory(Student** cont) {
 }
 
 
+=======
+>>>>>>> UT(06)_UT(07)

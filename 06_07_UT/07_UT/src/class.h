@@ -2,7 +2,10 @@
 #include <iostream>
 #ifndef INC_07_LAB_CLASS_H
 #define INC_07_LAB_CLASS_H
+<<<<<<< HEAD
 
+=======
+>>>>>>> UT(06)_UT(07)
 class Student{
 private:
     int id;
@@ -56,9 +59,12 @@ public:
     int GetStatus();
     std::string Print();
 };
+<<<<<<< HEAD
 
 double GroupAverageEstimate(Student** student1, int numberGroup, int numberSession);
 double AverageEstimateOfStudents(Student** student1);
 void CleanMemory(Student** cont);
 
+=======
+>>>>>>> UT(06)_UT(07)
 #endif //INC_07_LAB_CLASS_H

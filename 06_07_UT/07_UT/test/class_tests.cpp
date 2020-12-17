@@ -219,6 +219,7 @@ TEST(OperatorCheckStudent, Operat)
     EXPECT_EQ(a,"Name of the Student: A, his/her id: 30, his/her course number: 1, his/her group number: 2, his/her student number: 3 ");
 }
 
+<<<<<<< HEAD
 TEST (Function1, GroupAverageEstimate) {
   Student* student[6];
   student[0]= new Student("Aa",1,1,100);
@@ -249,5 +250,7 @@ TEST (Function2, AverageEstimateOfStudents) {
 }
 
 
+=======
+>>>>>>> UT(06)_UT(07)
 
 
