@@ -1,15 +1,20 @@
 #include <iostream>
+#include <map>
+#include <sstream>
+#include <cstdlib>
 #include <stack>
-
+#include <cmath>
+#include <vector>
+template <class T>
 class Stack {
 private:
 
-    int *stack;
+    T *stack;
     int top;
     int capacity;
 
     void extendDataArray() {
-        int* newArray = new int[capacity * 2];
+        T* newArray = new T[capacity * 2];
         for(int i = 0; i < capacity; ++i){
             newArray[i] = stack[i];
         }
@@ -22,7 +27,7 @@ public:
 
     Stack() {
         capacity = 1024;
-        stack = new int[capacity];
+        stack = new T[capacity];
         top = -1;
     }
 
@@ -30,7 +35,7 @@ public:
     {
         top = st.top;
         capacity = st.capacity;
-        stack = new int[capacity];
+        stack = new T[capacity];
         for (int i=0; i<=st.top; i++)
         {
             stack[i]=st.stack[i];
@@ -47,15 +52,14 @@ public:
         return top == -1;
     }
 
-    void Push(const int &value) {
+    void Push(const T &value) {
         if (top+1 == capacity) {
             extendDataArray();
         }
-        std::cout << "Inserting " << value << std::endl;
         stack[++top]= value;
     }
 
-    int Top()
+    T Top()
     {
         if (!isEmpty())
             return stack[top];
@@ -63,16 +67,15 @@ public:
             exit(EXIT_FAILURE);
     }
 
-    int Pop()
+    T Pop()
     {
         if (isEmpty())
         {
             std::cout << "UnderFlow\nProgram Terminated\n";
             exit(EXIT_FAILURE);
         }
-        int pastTop=stack[top];
+        T pastTop=stack[top];
         --top;
-        std::cout << "Removing " << pastTop << std::endl;
         return pastTop;
     }
 
@@ -98,7 +101,7 @@ public:
         delete[] stack;
         top = st.top;
         capacity = st.capacity;
-        stack = new int[st.capacity];
+        stack = new T[st.capacity];
         for (int i=0; i<=st.top; i++)
         {
             stack[i]=st.stack[i];
@@ -106,11 +109,11 @@ public:
         return *this;
     }
 
-    void operator>> (int value){
+    void operator>> (T value){
         Push(value);
     }
 
-    void operator<< (int& value){
+    void operator<< (T& value){
         value = Pop();
     }
 
@@ -132,45 +135,174 @@ public:
         delete [] stack;
     }
 };
+class Calculator{
+ public:
+  std::string ExpressionHandling(std::string inputString)
+  {
+    std::string outputString;
+    std::string::size_type ind;
+    while ((ind = inputString.find(' ')) != std::string::npos)
+    {
+      inputString.erase(ind, 1);
+    }
+
+    std::map<char, int> map;
+    map.insert(std::make_pair('^', 4));
+    map.insert(std::make_pair('*', 3));
+    map.insert(std::make_pair('/', 3));
+    map.insert(std::make_pair('+', 2));
+    map.insert(std::make_pair('-', 2));
+    map.insert(std::make_pair('(', 1));
+
+    Stack<char> container;
+    bool globalFlag = true;
+    bool flag = true;
+    bool bracketFlag = false;
+    for (auto c : inputString)
+    {
+      if (!isalnum(c))
+      {
+        if (((globalFlag) || (bracketFlag)) && (c == '-')){
+          outputString += c;
+          continue;
+        }
+        if (c=='.'){
+          outputString += c;
+          continue;
+        }
+        if (flag){
+          outputString += ' ';
+          flag = false;
+        }
+
+        if (')' == c)
+        {
+          while (container.Top() != '(')
+          {
+            outputString += container.Top();
+            container.Pop();
+            outputString += ' ';
+          }
+          container.Pop();
+        }
+        else if ('(' == c)
+        {
+          container.Push(c);
+          bracketFlag = true;
+        }
+        else if (container.isEmpty() || (map[container.Top()] < map[c]))
+        {
+          container.Push(c);
+        }
+        else
+        {
+          do
+          {
+            outputString += container.Top();
+            outputString += ' ';
+            container.Pop();
+          } while (!(container.isEmpty() || (map[container.Top()] < map[c])));
+          container.Push(c);
+        }
+      }
+      else
+      {
+        flag = true;
+        bracketFlag = false;
+        outputString += c;
+      }
+      if(globalFlag) {globalFlag = false;}
+    }
+
+    if (flag) {outputString += ' ';}
+    while (!container.isEmpty())
+    {
+      outputString += container.Top();
+      outputString += ' ';
+      container.Pop();
+    }
+    return outputString;
+  }
+
+  bool Check (const std::string &string){
+    Stack<int> stack;
+
+    for(auto c : string){
+      if (c=='('){
+        stack.Push(1);
+      } else if((c==')') && (stack.Size()>0)){
+        stack.Pop();
+      } else if ((c==')') && (stack.Size()<=0)){
+        return false;
+      }
+    }
+    if (stack.Size()>0){
+      return false;
+    }
+
+    for(int i=0; i<string.size()-1; ++i){
+      if (((!isdigit(string[i])) && (string[i]!=')') && (string[i]!='(')) &&
+      ((!isdigit(string[i+1])) && (string[i+1]!=')') && (string[i+1]!='('))){
+        return false;
+      }
+    }
+
+    for(int i=string.size()-1; (i>=0) && (!isdigit(string[i])); --i){
+      if ((string[i]!=')') && (string[i]!='(')){
+        return false;
+      }
+    }
+
+    for(auto c : string){
+      if((c!='+') && (c!='-') && (c!='/') && (c!='*') && (c!='^') && (c!='.') && (!isdigit(c)) && (c!=')') && (c!='(')){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  double Calculating(const std::string &opz){
+    if (opz.empty()){
+      std::cout<< "There is no expression!"<<std::endl;
+      return 0;
+    }
+
+    Stack<double> container;
+    std::string numberString;
+    double number;
+    std::stringstream stringStream(opz);
+    while (stringStream>>numberString){
+      if((numberString=="+") || (numberString=="-")|| (numberString=="/")|| (numberString=="*")|| (numberString=="^")){
+        double b=container.Top();
+        container.Pop();
+        double a=container.Top();
+        container.Pop();
+        if (numberString == "+"){
+          a=a+b;
+          container.Push(a);
+        } else if (numberString == "-"){
+          a=a-b;
+          container.Push(a);
+        } else if (numberString == "*"){
+          a=a*b;
+          container.Push(a);
+        } else if (numberString == "/"){
+          a=a/b;
+          container.Push(a);
+        } else if (numberString == "^"){
+          a = std::pow(a,b);
+          container.Push(a);
+        }
+      } else {
+          number = std::stod(numberString);
+          container.Push(number);
+          numberString.clear();
+      }
+    }
+    return container.Top();
+  }
+};
 
 int main() {
-    Stack a;
-    Stack c;
-    a.Push(0);
-    a.Push(1);
-    a.Push(99);
-    c.Push(2);
-    c.Push(1);
-    c.Push(99);
-    c>>1;
-    int x;
-    c<<x;
-    if (a>c){
-        std::cout << "tr1" << std::endl;
-    } else {
-        std::cout << "fal1" << std::endl;
-    }
-
-    if (a<c){
-        std::cout << "tr2" << std::endl;
-    } else {
-        std::cout << "fal2" << std::endl;
-    }
-
-    if (a==c){
-        std::cout << "tr3" << std::endl;
-    } else {
-        std::cout << "fal3" << std::endl;
-    }
-
-    Stack d;
-    d=a;
-
-    if (a==d){
-        std::cout << "tr4" << std::endl;
-    } else {
-        std::cout << "fal4" << std::endl;
-    }
-
-    return 0;
+  return 0;
 }
