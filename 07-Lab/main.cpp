@@ -1,5 +1,7 @@
 #include <iostream>
 #include "class.h"
+#include "class_1.h"
+#include "class_2.h"
 #include <array>
 double GroupAverageEstimate(Student** student1, int numberGroup, int numberSession){
     double sum=0;
@@ -43,5 +45,8 @@ int main() {
     std::cout <<GroupAverageEstimate(student,5,2)<<std::endl;
     std::cout <<AverageEstimateOfStudents(student)<<std::endl;
     std::cout <<*student[8]<<std::endl;
+    std::cout <<student[8]->GetId()<<std::endl;
+    Student A("a",1,2,3);
+  std::cout <<A.GetId()<<std::endl;
     return 0;
 }

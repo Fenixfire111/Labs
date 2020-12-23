@@ -3,8 +3,8 @@
 #define INC_07_LAB_CLASS_H
 class Student{
 private:
-    int id;
-    int number;
+    const int id = 0;
+    const int number;
 public:
     char* name;
     int course;
@@ -23,35 +23,5 @@ public:
     virtual void Print();
     virtual double AverageEstimate();
     virtual int GetStatus();
-};
-
-class StudentAfterFirst: public Student{
-private:
-
-public:
-    int firstSession[4];
-    StudentAfterFirst(char* name1, int course1, int group1, int number1,int a, int b, int c, int d);
-    StudentAfterFirst (StudentAfterFirst& student);
-    void SetEstimates(int a, int b, int c, int d);
-    int GetEstimate(int number);
-    friend std::ostream & operator<< (std::ostream &out, StudentAfterFirst &student);
-    virtual double AverageEstimate();
-    virtual int GetStatus();
-    virtual void Print();
-};
-
-class StudentAfterSecond: public StudentAfterFirst{
-private:
-
-public:
-    StudentAfterSecond(char* name1, int course1, int group1, int number1,int a, int b, int c, int d, int a1, int b1, int c1,int d1, int e1);
-    StudentAfterSecond(StudentAfterSecond& student);
-    void SetEstimates(int a1, int b1, int c1, int d1, int e1);
-    int secondSession[5];
-    int GetEstimate2(int number);
-    friend std::ostream & operator<< (std::ostream &out, StudentAfterSecond &student);
-    double AverageEstimate();
-    int GetStatus();
-    void Print();
 };
 #endif //INC_07_LAB_CLASS_H
