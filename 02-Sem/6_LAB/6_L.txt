@@ -1,0 +1,120 @@
+.code
+
+Row proc
+push rbp
+mov rbp, rsp
+mov rbx, [rbp + 24]
+xor r10, r10
+mov r9, [rbp + 16]
+f1:
+
+movzx eax, word ptr[rbx]
+add r10, rax
+dec r9
+add rbx, 2
+cmp r9, 0
+
+jne f1;
+mov rax, r10
+pop rbp
+ret 16
+Row endp
+
+Column proc
+push rbp
+mov rbp, rsp
+mov rcx, [rbp + 24]
+xor r10, r10
+mov r9, [rbp + 16]
+f2:
+
+mov rbx, qword ptr[rcx]
+movzx eax, word ptr[rbx]
+add r10, rax
+dec r9
+add rcx, 8
+cmp r9, 0
+
+jne f2;
+mov rax, r10
+pop rbp
+ret 16
+Column endp
+
+IsMagicSquare proc
+mov r8, rdx
+mov r12, rcx
+
+ z1:
+	mov rbx, qword ptr [rcx]
+	push rbx
+	push rdx
+	call Row
+	cmp r8, rdx
+	jne skip;
+	mov r11, r10
+	skip:
+	cmp r11, r10
+	jne end1;
+	dec r8
+	add rcx, 8
+	cmp r8, 0
+jne z1;
+
+xor r8, r8
+ z2:
+	mov rcx, r12
+	push rcx
+	push rdx
+	call Column
+	cmp r11, r10
+	jne end1;
+	inc r8
+	add rcx, 8
+	cmp r8, rdx
+jne z2;
+
+xor r10, r10
+mov rcx, r12   
+mov r10, 0
+	z3:
+	mov rbx, qword ptr[rcx]
+	mov r15, r8
+	imul r15, 2
+	add rbx, r15
+	movzx eax, word ptr[rbx]
+	add r10, rax
+	inc r8
+	add rcx, 8
+	cmp r8, rdx
+	jne z3;
+cmp r11, r10
+jne end1;
+
+mov r8, rdx 
+dec r8
+mov rcx, r12   
+xor r10, r10
+	z4:
+	mov rbx, qword ptr[rcx]
+	mov r15, r8
+	imul r15, 2
+	add rbx, r15
+	movzx eax, word ptr[rbx]
+	add r10, rax
+	dec r8
+	add rcx, 8
+	cmp r8, -1
+	jne z4;
+cmp r11, r10
+jne end1;
+
+mov rax, 1
+jmp end0;
+end1:
+mov rax, 0
+
+end0:
+ret
+IsMagicSquare endp
+end
